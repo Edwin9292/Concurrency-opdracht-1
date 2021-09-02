@@ -1,9 +1,8 @@
 package nl.saxion.concurrency.assignment1;
 
-import javax.sound.midi.SysexMessage;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,11 +28,16 @@ public class Main {
                 randomNumbers[j] = (random.nextInt());
             }
 
+            int[] firstHalf = Arrays.copyOfRange(randomNumbers, 0, randomNumbers.length/2);
+            int[] secondHalf = Arrays.copyOfRange(randomNumbers, randomNumbers.length/2, randomNumbers.length);
+
             //start timer
             Instant start = Instant.now();
 
             //sort numbers
-            Sort.bubbleSort(randomNumbers);
+            Sort.bubbleSort(firstHalf);
+            Sort.bubbleSort(secondHalf);
+            Sort.merge(firstHalf, secondHalf);
 
             int durationInMilliSeconds = (int) Duration.between(start, Instant.now()).toMillis();
             System.out.println("("+(i+1)+"/"+timesToRun+") The sorting took: " + durationInMilliSeconds +
