@@ -23,11 +23,7 @@ public class Main {
         int[] durations = new int[timesToRun];
 
         for (int i = 0; i < timesToRun; i++) {
-            int[] randomNumbers = new int[amountToSort];
-            Random random = new Random();
-            for (int j = 0; j < amountToSort; j++) {
-                randomNumbers[j] = (random.nextInt());
-            }
+            int[] randomNumbers = new Random().ints(amountToSort, 0, Integer.MAX_VALUE).toArray();
 
             //start timer
             Instant start = Instant.now();
