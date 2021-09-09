@@ -1,5 +1,7 @@
 package nl.saxion.concurrency.assignment1;
 
+import java.util.Arrays;
+
 public class Sort {
 
 
@@ -25,6 +27,39 @@ public class Sort {
         while (leftPos < left.length) result[mergedPos++] = left[leftPos++];
         while (rightPos < right.length) result[mergedPos++] = right[rightPos++];
         return result;
+    }
+
+    static void splitSort(int[] arr, int threshold){
+
+        int n = arr.length;
+
+        //check if the array length is more than the threshold
+        if(n > threshold){
+            //split the array in 2 half's
+            int[] firstHalf = Arrays.copyOfRange(arr, 0, n/2);
+            int[] secondHalf = Arrays.copyOfRange(arr, n/2, n);
+
+            //start threads to sort both halves of the array
+            Thread threadLeft = new Thread(()-> { Sort.splitSort(firstHalf, threshold);});
+            Thread threadRight = new Thread(()->{ Sort.splitSort(secondHalf, threshold);});
+            threadLeft.start();
+            threadRight.start();
+
+            // join the threads and merge the halves
+            try {
+                threadLeft.join();
+                threadRight.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            int[] mergedArray = Sort.merge(firstHalf, secondHalf);
+            for (int i = 0; i < mergedArray.length; i++) {
+                arr[i] = mergedArray[i];
+            }
+        }
+        else{
+            bubbleSort(arr);
+        }
     }
 
 
