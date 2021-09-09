@@ -5,7 +5,7 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Opdracht1 {
 
 
     public static void main(String[] args) {
