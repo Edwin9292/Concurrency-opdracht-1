@@ -1,9 +1,7 @@
 package nl.saxion.concurrency.assignment1;
 
-import javax.sound.midi.SysexMessage;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
