@@ -35,9 +35,9 @@ public class Main {
             Instant start = Instant.now();
 
             //sort numbers
-            Sort.bubbleSort(firstHalf);
-            Sort.bubbleSort(secondHalf);
-            Sort.merge(firstHalf, secondHalf);
+            nl.saxion.concurrency.assignment1.Sort.bubbleSort(firstHalf);
+            nl.saxion.concurrency.assignment1.Sort.bubbleSort(secondHalf);
+            nl.saxion.concurrency.assignment1.Sort.merge(firstHalf, secondHalf);
 
             //get the duration of the sorting, print it to console and add it to the durations array. 
             int durationInMilliSeconds = (int) Duration.between(start, Instant.now()).toMillis();
@@ -47,8 +47,8 @@ public class Main {
         }
 
         //sort all the durations
-        Sort.bubbleSort(durations);
-        if(Sort.isSorted(durations)){
+        nl.saxion.concurrency.assignment1.Sort.bubbleSort(durations);
+        if(nl.saxion.concurrency.assignment1.Sort.isSorted(durations)){
             int totalDuration = 0;
             //skip first and last (min and max duration since it's sorted)
             for (int i = 1; i < durations.length -1; i++) {
